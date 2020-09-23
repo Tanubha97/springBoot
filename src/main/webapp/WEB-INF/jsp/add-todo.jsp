@@ -5,16 +5,19 @@
 <link href="webjars/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-<div class= "container">
-  Add ToDo Page for ${name}
-    <form:form method = "post" modelAttribute="todo">
-    <fieldset class= "form-group">
-        <form:label path="desc"><B>Description</B></form:label>
-        <form:label path="desc" type = "text" class= "form-control" required= "required"/>
-        <button type = "submit" class="btn btn-success">Add</button>
-    </fieldset>
-    </form:form>
-</div>
+Add your ToDos:
+<div class="container">
+		<form:form method="post" modelAttribute="todo">
+			<fieldset class="form-group">
+				<form:label path="desc">Description</form:label>
+				<form:input path="desc" type="text"
+					class="form-control" required="required"/>
+				<form:errors path="desc" cssClass="text-warning"/>
+			</fieldset>
+
+			<button type="submit" class="btn btn-success">Add</button>
+		</form:form>
+	</div>
 <script src="webjars/jquery/3.5.1/jquery.min.js"></script>
 <script src="webjars/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
