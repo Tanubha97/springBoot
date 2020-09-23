@@ -1,6 +1,7 @@
 package com.web.app.webapp.controller;
 
 
+import com.web.app.webapp.model.Todo;
 import com.web.app.webapp.service.TodoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,13 +26,13 @@ public class TodoController {
     }
 
     @RequestMapping(value="/add-todo", method = RequestMethod.GET)
-    public String showTodo(ModelMap model){
+    public String showAddTodo(ModelMap model){
         return "add-todo";
     }
 
     @RequestMapping(value="/add-todo", method = RequestMethod.POST)
-    public String addTodo(ModelMap model, @RequestParam String desc){
-        todoService.addTodo((String)model.get("name"), desc, new Date(), false);
+    public String addTodo(ModelMap model, Todo todo){
+        model.addAttribute("todo",new Todo(0,(String) model.get("name"),"Default Desc", new Date(), false ));
         return "redirect:/list-todos";
     }
 
