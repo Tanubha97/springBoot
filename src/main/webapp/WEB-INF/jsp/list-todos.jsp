@@ -7,14 +7,15 @@
 </head>
 <body>
 <div class = "container">
-<caption><h1>Your ToDos are :</h1></caption>
+<caption><h3>Your ToDos are :</h3></caption>
 <table class="table table-striped" >
 
     <thead>
         <tr>
-            <td>Description</td>
-            <td>Target Date</td>
-            <td>Is it done?</td>
+            <th>Description</th>
+            <th>Target Date</th>
+            <th>Is it Done?</th>
+            <th>Delete</th>
         </tr>
     </thead>
     <tbody>
@@ -23,6 +24,7 @@
                <td>${todo.desc}</td>
                <td>${todo.targetDate}</td>
                <td>${todo.done}</td>
+               <td><a type = "button" class = "btn btn-warning" href="/delete-todo?id=${todo.id}">Delete</a></td>
         </tr>
         </c:forEach>
     </tbody>
