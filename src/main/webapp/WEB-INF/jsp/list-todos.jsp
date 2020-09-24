@@ -7,14 +7,14 @@
 <link href="webjars/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-<nav role="navigation" class="navbar navbar-default">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
 	<div class="">
-		<a href="http://www.tanubha.com" class="navbar-brand">To-DosHere..</a>
+		<a class="navbar-brand" href="#">To-DosHere..</a>
 	</div>
-	<div class="navbar-collapse">
-		<ul class="nav navbar-nav">
-			<li class="active"><a href="/login">Home</a></li>
-			<li><a href="/list-todos">Todos</a></li>
+	<div class="collapse navbar-collapse">
+		<ul class="navbar-nav mr-auto">
+			<li class="nav-item active"><a class="nav-link" href="/login">Home</a></li>
+			<li class="nav-item"><a class="nav-link" href="/list-todos">Todos</a></li>
 
 		</ul>
 	</div>
