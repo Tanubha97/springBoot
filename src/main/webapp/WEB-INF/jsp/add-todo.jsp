@@ -1,10 +1,6 @@
-<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<html>
-<head>
-<title>First WebPage</title>
-<link href="webjars/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
+<%@ include file= "common/header.jspf" %>
+<%@ include file= "common/navigation.jspf" %>
+<div>
 Add your ToDos:
 <div class="container">
 		<form:form method="post" modelAttribute="todo">
@@ -25,10 +21,6 @@ Add your ToDos:
 
 			<button type="submit" class="btn btn-success">Add</button>
 		</form:form>
-	</div>
-<script src="webjars/jquery/3.5.1/jquery.min.js"></script>
-<script src="webjars/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<script src="webjars/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.js"></script>
-<script> $('#targetDate').datepicker({format: 'dd/mm/yyyy'});</script>
-</body>
-</html>
+</div>
+</div>
+<%@ include file= "common/footer.jspf" %>

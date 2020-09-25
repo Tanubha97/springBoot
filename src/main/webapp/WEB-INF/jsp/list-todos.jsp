@@ -1,27 +1,8 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-
-<html>
-<head>
-<title>ToDo for ${name}</title>
-<link href="webjars/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-	<div class="">
-		<a class="navbar-brand" href="#">To-DosHere..</a>
-	</div>
-	<div class="collapse navbar-collapse">
-		<ul class="navbar-nav mr-auto">
-			<li class="nav-item active"><a class="nav-link" href="/login">Home</a></li>
-			<li class="nav-item"><a class="nav-link" href="/list-todos">Todos</a></li>
-
-		</ul>
-	</div>
-</nav>
+<%@ include file= "common/header.jspf" %>
+<%@ include file= "common/navigation.jspf" %>
 	<div class="container">
 		<table class="table table-striped">
-			<caption>Your todos are</caption>
+			<caption style="caption-side:top">Your todos are</caption>
 			<thead>
 				<tr>
 					<th>Description</th>
@@ -39,18 +20,15 @@
 						<td>${todo.done}</td>
 						<td><a type="button" class="btn btn-success"
 							href="/update-todo?id=${todo.id}">Update</a></td>
-						<td><a type="button" class="btn btn-warning"
+						<td><a type="button" class="btn btn-danger"
 							href="/delete-todo?id=${todo.id}">Delete</a></td>
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
 		<div>
-			<a class="button" href="/add-todo">Add a Todo</a>
+			<a type="button" class="btn btn-dark" href="/add-todo">Add a Todo</a>
 		</div>
 	</div>
-</div>
-<script src="webjars/jquery/3.5.1/jquery.min.js"></script>
-<script src="webjars/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
-</html>
+
+<%@ include file= "common/footer.jspf" %>
