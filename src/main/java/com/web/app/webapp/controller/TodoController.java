@@ -2,6 +2,7 @@ package com.web.app.webapp.controller;
 
 
 import com.web.app.webapp.model.Todo;
+import com.web.app.webapp.service.TodoRepository;
 import com.web.app.webapp.service.TodoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -20,8 +21,11 @@ import java.util.Date;
 @Controller
 public class TodoController {
 
+    // @Autowired
+    //TodoService todoService ;
+
     @Autowired
-    TodoService todoService ;
+    TodoRepository repository;
 
     @InitBinder
     public void initBinder(WebDataBinder binder){
@@ -40,7 +44,8 @@ public class TodoController {
     @RequestMapping(value="/list-todos", method = RequestMethod.GET)
     public String showTodos(ModelMap model){
         String name= getLoggedinUserName(model); // or we can take the name paramater as defaul in object class variable.
-        model.put("todos", todoService.retrieveTodos(name));
+        model.put("todos", repository.findByUser(name));
+        // model.put("todos", todoService.retrieveTodos(name));
         return "list-todos";
     }
 
@@ -56,12 +61,15 @@ public class TodoController {
         if(result.hasErrors()){
             return "add-todo";
         }
-        todoService.addTodo(getLoggedinUserName(model),todo.getDesc() , todo.getTargetDate(), false);
+        todo.setUser(getLoggedinUserName(model));
+        repository.save(todo);
+       // todoService.addTodo(getLoggedinUserName(model),todo.getDesc() , todo.getTargetDate(), false);
         return "redirect:/list-todos";
     }
     @RequestMapping(value="/update-todo", method = RequestMethod.GET)
     public String updateTodo(ModelMap model, @RequestParam int id){
-        Todo todo = todoService.retrieveTodo(id);
+        // Todo todo = todoService.retrieveTodo(id);
+        Todo todo = repository.findById(id).get();
         model.put("todo",todo);
         return "add-todo";
     }
@@ -71,16 +79,18 @@ public class TodoController {
         if(result.hasErrors()){
             return "add-todo";
         }
-        todo.setUser((String) model.get("name"));
-        todoService.updateTodo(todo);
+        todo.setUser(getLoggedinUserName(model));
+        repository.save(todo);
+      //  todoService.updateTodo(todo);
         return "redirect:/list-todos";
     }
 
     @RequestMapping(value="/delete-todo", method = RequestMethod.GET)
     public String deleteTodo(ModelMap model, @RequestParam int id){
-        if(id==1)
-            throw new RuntimeException("Something went wrong");
-        todoService.deleteTodo(id);
+        /*if(id==1)
+            throw new RuntimeException("Something went wrong"); */
+        //todoService.deleteTodo(id);
+        repository.deleteById(id);
         return "redirect:/list-todos";
     }
 }
